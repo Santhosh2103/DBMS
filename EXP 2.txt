@@ -1,0 +1,74 @@
+
+mysql> use faculty;
+Database changed
+mysql> desc faculty;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Facno    | varchar(4)  | NO   | PRI |         |       |
+| facname  | varchar(15) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| DOB      | date        | YES  |     | NULL    |       |
+| DOJ      | date        | YES  |     | NULL    |       |
+| Mobileno | int(10)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.03 sec)
+
+mysql> alter table clg
+    -> modify Mobileno int(10) primary key;
+ERROR 1146 (42S02): Table 'faculty.clg' doesn't exist
+mysql> alter table faculty
+    -> modify Mobileno int(10) primary key;
+ERROR 1068 (42000): Multiple primary key defined
+mysql> desc faculty
+    -> ;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Facno    | varchar(4)  | NO   | PRI |         |       |
+| facname  | varchar(15) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| DOB      | date        | YES  |     | NULL    |       |
+| DOJ      | date        | YES  |     | NULL    |       |
+| Mobileno | int(10)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.03 sec)
+mysql> alter table faculty
+    -> add check (gender='M' OR 'F');
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc class;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| reg     | int(7)      | NO   | PRI | 0       |       |
+| teacher | varchar(10) | YES  |     | NULL    |       |
+| year    | int(8)      | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc stud;
++-------+------------+------+-----+---------+-------+
+| Field | Type       | Null | Key | Default | Extra |
++-------+------------+------+-----+---------+-------+
+| name  | varchar(7) | YES  |     | NULL    |       |
+| reg   | int(8)     | YES  |     | NULL    |       |
++-------+------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+
+mysql> alter table stud foreign key (reg) references class (reg);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key (reg) references class (reg)' at line 1
+mysql> alter table stud add foreign key (reg) references class (reg);
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stud;
++-------+------------+------+-----+---------+-------+
+| Field | Type       | Null | Key | Default | Extra |
++-------+------------+------+-----+---------+-------+
+| name  | varchar(7) | YES  |     | NULL    |       |
+| reg   | int(8)     | YES  | MUL | NULL    |       |
++-------+------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+
+mysql>
