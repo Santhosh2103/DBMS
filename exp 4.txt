@@ -1,0 +1,42 @@
+
+mysql> update faculty set facname='sid' where Facno='234';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from faculty;
++-------+----------+--------+------------+------------+-----------+
+| Facno | facname  | gender | DOB        | DOJ        | Mobileno  |
++-------+----------+--------+------------+------------+-----------+
+| 123   | santhosh | M      | 2004-03-21 | 2023-01-25 | 122344456 |
+| 234   | sid      | M      | 2004-03-21 | 2023-01-25 | 293348483 |
++-------+----------+--------+------------+------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into faculty values('456','keerthana','F','2005-05-29','2024-05-20','323255448';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into faculty values('456','keerthana','F','2005-05-29','2024-05-20','323255448');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from faculty;
++-------+-----------+--------+------------+------------+-----------+
+| Facno | facname   | gender | DOB        | DOJ        | Mobileno  |
++-------+-----------+--------+------------+------------+-----------+
+| 123   | santhosh  | M      | 2004-03-21 | 2023-01-25 | 122344456 |
+| 234   | sid       | M      | 2004-03-21 | 2023-01-25 | 293348483 |
+| 456   | keerthana | F      | 2005-05-29 | 2024-05-20 | 323255448 |
++-------+-----------+--------+------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> delete form faculty where facname='santhosh';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'faculty where facname='santhosh'' at line 1
+mysql> delete from faculty where facname='santhosh';
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from faculty;
++-------+-----------+--------+------------+------------+-----------+
+| Facno | facname   | gender | DOB        | DOJ        | Mobileno  |
++-------+-----------+--------+------------+------------+-----------+
+| 234   | sid       | M      | 2004-03-21 | 2023-01-25 | 293348483 |
+| 456   | keerthana | F      | 2005-05-29 | 2024-05-20 | 323255448 |
++-------+-----------+--------+------------+------------+-----------+
+2 rows in set (0.00 sec)
