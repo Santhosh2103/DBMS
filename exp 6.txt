@@ -1,0 +1,97 @@
+mysql> use students;
+Database changed
+mysql> select * from students;
++-------+-----------+------------+-----------+----------+
+| Regno | name      | DOB        | mobileno  | bloodgrp |
++-------+-----------+------------+-----------+----------+
+|  5959 | santhosh  | 2004-03-21 | 293344959 | B+ve     |
+|  8484 | saravanan | 2005-01-01 | 483509309 | A+ve     |
+|  9593 | vijay     | 2004-06-10 | 490905037 | O+ve     |
+|  7594 | tamil     | 2004-12-13 |  80349445 | AB+ve    |
++-------+-----------+------------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select count(name) from students;
++-------------+
+| count(name) |
++-------------+
+|           4 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(Regno) from students
+    -> ;
++--------------+
+| count(Regno) |
++--------------+
+|            4 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select count(name) from students
+    -> ;
++-------------+
+| count(name) |
++-------------+
+|           4 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(name),Regno from students
+    -> group by Regno having count(name)>0;
++-------------+-------+
+| count(name) | Regno |
++-------------+-------+
+|           1 |  5959 |
+|           1 |  7594 |
+|           1 |  8484 |
+|           1 |  9593 |
++-------------+-------+
+4 rows in set (0.06 sec)
+
+mysql> select name,Regno from students
+    -> group by Regno having count(name)>0;
++-----------+-------+
+| name      | Regno |
++-----------+-------+
+| santhosh  |  5959 |
+| tamil     |  7594 |
+| saravanan |  8484 |
+| vijay     |  9593 |
++-----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select 9593 from students;
++------+
+| 9593 |
++------+
+| 9593 |
+| 9593 |
+| 9593 |
+| 9593 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select Regno,9593 from students;
++-------+------+
+| Regno | 9593 |
++-------+------+
+|  5959 | 9593 |
+|  8484 | 9593 |
+|  9593 | 9593 |
+|  7594 | 9593 |
++-------+------+
+4 rows in set (0.00 sec)
+
+mysql> select Regno,name from students;
++-------+-----------+
+| Regno | name      |
++-------+-----------+
+|  5959 | santhosh  |
+|  8484 | saravanan |
+|  9593 | vijay     |
+|  7594 | tamil     |
++-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql>
