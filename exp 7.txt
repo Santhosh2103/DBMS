@@ -1,0 +1,97 @@
+
+mysql> select name,mobileno,bloodgrp from students order by Regno;
++-----------+-----------+----------+
+| name      | mobileno  | bloodgrp |
++-----------+-----------+----------+
+| santhosh  | 293344959 | B+ve     |
+| tamil     |  80349445 | AB+ve    |
+| saravanan | 483509309 | A+ve     |
+| vijay     | 490905037 | O+ve     |
++-----------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select Regno,name,DOB from students order by bloodgrp;
++-------+-----------+------------+
+| Regno | name      | DOB        |
++-------+-----------+------------+
+|  8484 | saravanan | 2005-01-01 |
+|  7594 | tamil     | 2004-12-13 |
+|  5959 | santhosh  | 2004-03-21 |
+|  9593 | vijay     | 2004-06-10 |
++-------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from marks;
+ERROR 1146 (42S02): Table 'students.marks' doesn't exist
+mysql> use marks;
+Database changed
+mysql> select * from marks;
++-------+------------+-------+-------+
+| Regno | name       | marks | grade |
++-------+------------+-------+-------+
+| 7878  | santhosh   |    98 | A     |
+| 8920  | keerthanaa |    85 | B     |
+| 6394  | vijay      |    80 | c     |
+| 3940  | saravana   |    99 | A+    |
++-------+------------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select Regno,marks from marks order by name;
++-------+-------+
+| Regno | marks |
++-------+-------+
+| 8920  |    85 |
+| 7878  |    98 |
+| 3940  |    99 |
+| 6394  |    80 |
++-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select avg(marks) from marks;
++------------+
+| avg(marks) |
++------------+
+|    90.5000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select count(marks) from marks;
++--------------+
+| count(marks) |
++--------------+
+|            4 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select count(name),Regno from marks;
++-------------+-------+
+| count(name) | Regno |
++-------------+-------+
+|           4 | 7878  |
++-------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select name,Regno from marks;
++------------+-------+
+| name       | Regno |
++------------+-------+
+| santhosh   | 7878  |
+| keerthanaa | 8920  |
+| vijay      | 6394  |
+| saravana   | 3940  |
++------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select count(name),Regno from marks
+    -> group by Regno having count(name)>0;
++-------------+-------+
+| count(name) | Regno |
++-------------+-------+
+|           1 | 3940  |
+|           1 | 6394  |
+|           1 | 7878  |
+|           1 | 8920  |
++-------------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
