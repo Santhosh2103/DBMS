@@ -1,0 +1,53 @@
+
+mysql> use hospitals;
+Database changed
+mysql> select * from salary;
++------+---------+--------+
+| name | idproof | salary |
++------+---------+--------+
+| sid  | 4433    | 100000 |
+| saks | 6565    |  10000 |
+| liz  | 7676    |  20030 |
++------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select idproof from salary where salary=(select max(salary)from salary);
++---------+
+| idproof |
++---------+
+| 4433    |
++---------+
+1 row in set (0.05 sec)
+
+mysql> select name from salary where salary=(select min(salary) from salary);
++------+
+| name |
++------+
+| saks |
++------+
+1 row in set (0.00 sec)
+
+mysql> use marks;
+Database changed
+mysql> select * from marks
+    -> ;
++-------+------------+-------+-------+
+| Regno | name       | marks | grade |
++-------+------------+-------+-------+
+| 7878  | santhosh   |    98 | A     |
+| 8920  | keerthanaa |    85 | B     |
+| 6394  | vijay      |    80 | c     |
+| 3940  | saravana   |    99 | A+    |
++-------+------------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select name,marks from marks e where marks>(select avg(marks) from marks i);
++----------+-------+
+| name     | marks |
++----------+-------+
+| santhosh |    98 |
+| saravana |    99 |
++----------+-------+
+2 rows in set (0.03 sec)
+
+mysql>
