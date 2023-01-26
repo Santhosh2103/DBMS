@@ -95,3 +95,14 @@ mysql> select Regno,name from students;
 4 rows in set (0.00 sec)
 
 mysql>
+mysql> select * from students where Regno in 5959;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '5959' at line 1
+mysql> select * from students where Regno in (5959);
++-------+----------+------------+-----------+----------+
+| Regno | name     | DOB        | mobileno  | bloodgrp |
++-------+----------+------------+-----------+----------+
+|  5959 | santhosh | 2004-03-21 | 293344959 | B+ve     |
++-------+----------+------------+-----------+----------+
+1 row in set (0.00 sec)
+
+mysql>
