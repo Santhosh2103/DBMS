@@ -1,0 +1,79 @@
+mysql> use students;
+Database changed
+mysql> select * from students;
++-------+-----------+------------+-----------+----------+
+| Regno | name      | DOB        | mobileno  | bloodgrp |
++-------+-----------+------------+-----------+----------+
+|  5959 | santhosh  | 2004-03-21 | 293344959 | B+ve     |
+|  8484 | saravanan | 2005-01-01 | 483509309 | A+ve     |
+|  9593 | vijay     | 2004-06-10 | 490905037 | O+ve     |
+|  7594 | tamil     | 2004-12-13 |  80349445 | AB+ve    |
++-------+-----------+------------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from marks;
++-----------+------+-------+
+| name      | id   | marks |
++-----------+------+-------+
+| santhosh  |  201 | 98    |
+| vijay     |  202 | 90    |
+| saravanan |  203 | 95    |
+| tamil     |  204 | 94    |
++-----------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from students,marks
+    -> where students.name=marks.name;
++-------+-----------+------------+-----------+----------+-----------+------+-------+
+| Regno | name      | DOB        | mobileno  | bloodgrp | name      | id   | marks |
++-------+-----------+------------+-----------+----------+-----------+------+-------+
+|  5959 | santhosh  | 2004-03-21 | 293344959 | B+ve     | santhosh  |  201 | 98    |
+|  9593 | vijay     | 2004-06-10 | 490905037 | O+ve     | vijay     |  202 | 90    |
+|  8484 | saravanan | 2005-01-01 | 483509309 | A+ve     | saravanan |  203 | 95    |
+|  7594 | tamil     | 2004-12-13 |  80349445 | AB+ve    | tamil     |  204 | 94    |
++-------+-----------+------------+-----------+----------+-----------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> use students;
+Database changed
+mysql> select * from students;
++-------+-----------+------------+-----------+----------+
+| Regno | name      | DOB        | mobileno  | bloodgrp |
++-------+-----------+------------+-----------+----------+
+|  5959 | santhosh  | 2004-03-21 | 293344959 | B+ve     |
+|  8484 | saravanan | 2005-01-01 | 483509309 | A+ve     |
+|  9593 | vijay     | 2004-06-10 | 490905037 | O+ve     |
+|  7594 | tamil     | 2004-12-13 |  80349445 | AB+ve    |
++-------+-----------+------------+-----------+----------+
+4 rows in set (0.08 sec)
+
+mysql> select * from marks;
++-----------+------+-------+
+| name      | id   | marks |
++-----------+------+-------+
+| santhosh  |  201 | 98    |
+| vijay     |  202 | 90    |
+| saravanan |  203 | 95    |
+| tamil     |  204 | 94    |
++-----------+------+-------+
+4 rows in set (0.05 sec)
+
+
+mysql> select marks.id,students.name,marks.marks from marks
+    -> inner join students on marks.id=students.Regno;
+Empty set (0.00 sec)
+
+mysql> select marks.name,students.mobileno,marks.marks from marks
+    -> inner join students on marks.name=students.name;
++-----------+-----------+-------+
+| name      | mobileno  | marks |
++-----------+-----------+-------+
+| santhosh  | 293344959 | 98    |
+| saravanan | 483509309 | 95    |
+| vijay     | 490905037 | 90    |
+| tamil     |  80349445 | 94    |
++-----------+-----------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
