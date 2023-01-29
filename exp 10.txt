@@ -1,0 +1,56 @@
+mysql> use students;
+Database changed
+mysql> select * from students;
++-------+-----------+------------+-----------+----------+
+| Regno | name      | DOB        | mobileno  | bloodgrp |
++-------+-----------+------------+-----------+----------+
+|  5959 | santhosh  | 2004-03-21 | 293344959 | B+ve     |
+|  8484 | saravanan | 2005-01-01 | 483509309 | A+ve     |
+|  9593 | vijay     | 2004-06-10 | 490905037 | O+ve     |
+|  7594 | tamil     | 2004-12-13 |  80349445 | AB+ve    |
++-------+-----------+------------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from marks;
++-----------+------+-------+
+| name      | id   | marks |
++-----------+------+-------+
+| santhosh  |  201 | 98    |
+| vijay     |  202 | 90    |
+| saravanan |  203 | 95    |
+| tamil     |  204 | 94    |
++-----------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create view ordermarks as select name,bloodgrp from students order by
+    -> name;
+Query OK, 0 rows affected (0.08 sec)
+
+
+mysql> select * from ordermarks;
++-----------+----------+
+| name      | bloodgrp |
++-----------+----------+
+| santhosh  | B+ve     |
+| saravanan | A+ve     |
+| tamil     | AB+ve    |
+| vijay     | O+ve     |
++-----------+----------+
+4 rows in set (0.02 sec)
+
+mysql> create index orderid on students(Regno);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++-------+-----------+------------+-----------+----------+
+| Regno | name      | DOB        | mobileno  | bloodgrp |
++-------+-----------+------------+-----------+----------+
+|  5959 | santhosh  | 2004-03-21 | 293344959 | B+ve     |
+|  8484 | saravanan | 2005-01-01 | 483509309 | A+ve     |
+|  9593 | vijay     | 2004-06-10 | 490905037 | O+ve     |
+|  7594 | tamil     | 2004-12-13 |  80349445 | AB+ve    |
++-------+-----------+------------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql>
