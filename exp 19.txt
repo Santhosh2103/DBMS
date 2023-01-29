@@ -1,0 +1,12 @@
+mysql> use students;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_students |
++--------------------+
+| javalab            |
+| marks              |
+| myguests           |
+| students           |
++--------------------+
+4 rows in set (0.00 sec)
